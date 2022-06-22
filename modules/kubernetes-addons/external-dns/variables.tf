@@ -1,3 +1,9 @@
+variable "create_iam" {
+  description = "Automaticly create IAM role"
+  type        = bool
+  default     = true
+}
+
 variable "helm_config" {
   description = "External DNS Helm Configuration"
   type        = any
