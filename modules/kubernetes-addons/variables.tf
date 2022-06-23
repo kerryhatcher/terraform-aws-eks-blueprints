@@ -1,3 +1,9 @@
+variable "create_iam" {
+  description = "Automaticly create IAM role"
+  type        = bool
+  default     = true
+}
+
 variable "eks_cluster_id" {
   description = "EKS Cluster Id"
   type        = string
