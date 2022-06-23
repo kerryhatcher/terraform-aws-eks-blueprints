@@ -1,4 +1,4 @@
-variable "create_iam" {
+variable "create_iam_role" {
   description = "Automaticly create IAM role"
   type        = bool
   default     = true
