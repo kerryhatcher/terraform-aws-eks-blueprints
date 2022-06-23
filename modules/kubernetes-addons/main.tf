@@ -167,6 +167,7 @@ module "external_dns" {
   addon_context     = local.addon_context
   domain_name       = var.eks_cluster_domain
   create_iam_role   = var.create_iam_role  
+  irsa_role_name = var.external_dns_irsa_role_name
 }
 
 module "fargate_fluentbit" {

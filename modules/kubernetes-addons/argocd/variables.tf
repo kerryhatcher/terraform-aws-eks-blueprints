@@ -1,3 +1,9 @@
+variable "create_iam_role" {
+  description = "Automatically create IAM role"
+  type        = bool
+  default     = true
+}
+
 variable "helm_config" {
   description = "ArgoCD Helm Chart Config values"
   type        = any

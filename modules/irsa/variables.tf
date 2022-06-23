@@ -1,3 +1,16 @@
+variable "create_iam_role" {
+  description = "Automatically create IAM role"
+  type        = bool
+  default     = true
+}
+
+
+variable "irsa_role_name" {
+  description = "Automatically create IAM role"
+  type        = string
+  default     = null
+}
+
 variable "kubernetes_namespace" {
   description = "Kubernetes Namespace name"
   type        = string

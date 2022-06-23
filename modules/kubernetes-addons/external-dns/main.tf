@@ -9,6 +9,8 @@ module "helm_addon" {
   set_values        = local.set_values
   addon_context     = var.addon_context
   manage_via_gitops = var.manage_via_gitops
+  create_iam_role   = var.create_iam_role
+  irsa_role_name    = var.irsa_role_name
 }
 
 #------------------------------------

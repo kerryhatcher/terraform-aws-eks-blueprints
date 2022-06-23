@@ -67,4 +67,6 @@ module "irsa" {
   kubernetes_service_account        = var.irsa_config.kubernetes_service_account
   irsa_iam_policies                 = var.irsa_config.irsa_iam_policies
   addon_context                     = var.addon_context
+  create_iam_role                   = var.create_iam_role
+  irsa_role_name                    = var.irsa_role_name 
 }

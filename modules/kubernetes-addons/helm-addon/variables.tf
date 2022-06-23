@@ -1,3 +1,15 @@
+variable "create_iam_role" {
+  description = "Automatically create IAM role"
+  type        = bool
+  default     = true
+}
+
+variable "irsa_role_name" {
+  description = "Automatically create IAM role"
+  type        = string
+  default     = null
+}
+
 variable "helm_config" {
   description = "Helm chart config. Repository and version required. See https://registry.terraform.io/providers/hashicorp/helm/latest/docs"
   type        = any

@@ -4,6 +4,12 @@ variable "create_iam_role" {
   default     = true
 }
 
+variable "irsa_role_name" {
+  description = "Automatically create IAM role"
+  type        = string
+  default     = null
+}
+
 variable "helm_config" {
   description = "External DNS Helm Configuration"
   type        = any

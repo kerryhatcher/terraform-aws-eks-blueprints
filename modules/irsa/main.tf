@@ -5,19 +5,25 @@ resource "kubernetes_namespace_v1" "irsa" {
   }
 }
 
+data "aws_iam_role" "irsa_role" {
+  name = var.irsa_role_name == null ? aws_iam_role.irsa[0].name : var.irsa_role_name
+}
+
 resource "kubernetes_service_account_v1" "irsa" {
   count = var.create_kubernetes_service_account ? 1 : 0
   metadata {
     name        = var.kubernetes_service_account
     namespace   = var.kubernetes_namespace
-    annotations = var.irsa_iam_policies != null ? { "eks.amazonaws.com/role-arn" : aws_iam_role.irsa[0].arn } : null
+    annotations = var.irsa_iam_policies != null ? { "eks.amazonaws.com/role-arn" : data.aws_iam_role.irsa_role.arn } : null
   }
 
   automount_service_account_token = true
 }
 
+
+
 resource "aws_iam_role" "irsa" {
-  count = var.irsa_iam_policies != null ? 1 : 0
+  count = var.create_iam_role ? 1 : 0
 
   name        = format("%s-%s-%s", var.addon_context.eks_cluster_id, trim(var.kubernetes_service_account, "-*"), "irsa")
   description = "AWS IAM Role for the Kubernetes service account ${var.kubernetes_service_account}."
@@ -54,5 +60,5 @@ resource "aws_iam_role_policy_attachment" "irsa" {
   count = var.irsa_iam_policies != null ? length(var.irsa_iam_policies) : 0
 
   policy_arn = var.irsa_iam_policies[count.index]
-  role       = aws_iam_role.irsa[0].name
+  role       = data.aws_iam_role.irsa_role.name
 }

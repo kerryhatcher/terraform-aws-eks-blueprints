@@ -1,8 +1,15 @@
 variable "create_iam_role" {
-  description = "Automaticly create IAM role"
+  description = "Automatically create IAM role"
   type        = bool
   default     = true
 }
+
+variable "external_dns_irsa_role_name" {
+  description = "Automatically create IAM role"
+  type        = string
+  default     = null
+}
+
 
 variable "eks_cluster_id" {
   description = "EKS Cluster Id"
